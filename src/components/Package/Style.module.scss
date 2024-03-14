@@ -1,0 +1,38 @@
+.package {
+  @apply rounded flex items-center mb-2 overflow-hidden bg-white;
+
+  & {
+    border: 1px solid #ccc;
+
+    input[type="radio"]:checked + label .radio {
+      background-color: #3ac882;
+      box-shadow: 0px 0px 0px 2px white inset;
+    }
+
+    input[type="radio"]:checked + label .radio {
+      @apply border-primary;
+    }
+    .radio{
+      @apply min-w-[16px] md:min-w-[20px] min-h-[16px] md:min-h-[20px];
+      @apply inline-block md:mr-4 mr-2 rounded-full border border-[#646464];
+    }
+    label {
+      @apply flex items-center md:px-4 md:py-4 min-h-[38px] md:h-20 p-2 cursor-pointer;
+      &:hover {
+        @apply lg:bg-gray-200 transition;
+      }
+    }
+  }
+  .title {
+    @apply text-sm md:text-base lg:leading-7 uppercase font-montserratMedium;
+  }
+  .price {
+    @apply text-primary md:text-lg xl:text-2xl text-lg text-right flex items-center font-montserratMedium;
+  }
+  .old-price {
+    @apply md:text-sm text-xs line-through text-right;
+  }
+  .radio-group {
+    @apply flex items-center justify-between w-full;
+  }
+}

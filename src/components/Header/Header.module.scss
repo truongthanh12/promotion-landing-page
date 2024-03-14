@@ -1,0 +1,9 @@
+.header {
+  @apply flex items-center justify-between py-4 sticky top-0;
+  .account {
+    @apply flex items-center uppercase font-montserratBold;
+  }
+  .logo {
+    @apply flex max-w-[90px];
+  }
+}

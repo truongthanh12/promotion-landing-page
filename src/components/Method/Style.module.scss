@@ -1,0 +1,17 @@
+.payment-method {
+  @apply md:h-40 h-28 flex lg:flex-row justify-center lg:justify-normal flex-col;
+  @apply space-y-3 items-center lg:space-y-0 lg:space-x-3 bg-white rounded xl:p-3.5 p-2 w-full;
+  @apply hover:bg-opacity-60 transition cursor-pointer duration-300;
+  @apply min-h-[145px] lg:min-h-max;
+  @apply relative before:rounded transition before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 hover:before:border-primary hover:before:border-2 hover:shadow-[0_0.125rem_0.625rem_rgba(0,0,0,0.25)];
+  &.active {
+    @apply before:border-primary before:border-2 shadow-[0_0.125rem_0.625rem_rgba(0,0,0,0.25)];
+  }
+  .title {
+    @apply text-sm text-center md:text-base tracking-tight font-montserratMedium w-full;
+    @apply min-h-[40px] lg:min-h-max flex items-center justify-center;
+  }
+  .box {
+    @apply lg:w-20 w-14 max-w-[80px] max-h-20 overflow-hidden flex items-center justify-center;
+  }
+}

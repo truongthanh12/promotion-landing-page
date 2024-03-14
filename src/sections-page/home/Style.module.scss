@@ -1,0 +1,50 @@
+.promotion-info {
+  @apply space-y-4 lg:space-y-6;
+  .scrollbar-custom {
+    ul,
+    ol {
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+      &::-webkit-scrollbar-track {
+        background: #d9d9d9;
+        border-radius: 6px;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 6px;
+        background: #8a8a8a;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        opacity: 0.75;
+      }
+    }
+  }
+  .input-custom {
+    @apply relative border-b shadow-sm w-full bg-transparent outline-none;
+    @apply 2xl:text-2xl lg:text-lg text-sm focus:border-white py-2 rounded-none;
+    @apply focus:placeholder:text-white focus:text-white transition md:placeholder:tracking-normal;
+    @apply tracking-wider placeholder:tracking-normal md:placeholder:text-base placeholder:text-[13px];
+  }
+  .button-custom {
+    @apply md:pl-3 pl-2 pr-1 md:ml-3 ml-1.5 py-1 xl:pl-4 text-xs md:text-lg whitespace-nowrap w-auto font-montserratBold;
+    @apply enabled:hover:opacity-90 bg-[#001f00] flex items-center rounded-3xl border lg:border-2 border-[#0baf12];
+    @apply disabled:bg-[#565656] disabled:opacity-100 disabled:border-[#9e9d9e] disabled:text-[#9e9d9e] shadow-[0px_0.125rem_0.625rem_#00000040];
+    height: auto !important;
+
+    .icon {
+      @apply rounded-full flex justify-center items-center ml-1 md:ml-2 lg:w-8 lg:h-8 h-5 w-5 bg-[#0cde0c];
+      & > div {
+        @apply w-auto;
+      }
+      &.disabled {
+        @apply bg-[#9e9e9d];
+      }
+    }
+  }
+  .list {
+    ul,
+    ol {
+      @apply text-sm list-disc pr-2 pl-4 overflow-y-auto max-h-[135px] overscroll-none;
+    }
+  }
+}

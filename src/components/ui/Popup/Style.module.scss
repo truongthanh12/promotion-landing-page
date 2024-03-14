@@ -1,0 +1,21 @@
+.popup {
+  @apply bg-[rgba(0,0,0,0.70)] overflow-y-auto overflow-x-hidden fixed top-0 px-3;
+  @apply right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-full max-h-full;
+  .wrapper {
+    @apply flex justify-center items-center w-full h-full;
+  }
+  .box {
+    @apply w-full relative flex max-w-[594px] max-h-full min-h-[242px] bg-[#333333] rounded-[2px];
+  }
+  .extra-box {
+    @apply flex justify-center flex-col text-center items-center relative rounded-lg dark:bg-gray-700;
+  }
+}
+.popupPhoneNumberUsed {
+  .button {
+    @apply hover:opacity-80 transition w-full h-9 lg:h-[48px] text-base rounded-[2px] text-black bg-white;
+  }
+  .text {
+    @apply text-sm md:text-base font-normal text-[#cccccc];
+  }
+}

@@ -1,0 +1,19 @@
+.box {
+  @apply py-3;
+  &-item {
+    @apply grid grid-cols-2 w-full text-sm md:text-base;
+    & > span:last-child {
+      @apply col-span-1 text-[#111111];
+    }
+  }
+  .text {
+    @apply col-span-1 text-right font-montserratMedium;
+  }
+}
+
+.small-text {
+  @apply text-[#646464] text-xs mt-3 pb-2 md:pb-3 lg:text-left text-center transition;
+  span {
+    @apply hover:underline cursor-pointer;
+  }
+}

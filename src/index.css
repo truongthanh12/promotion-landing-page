@@ -1,13 +1,172 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+@font-face {
+  font-family: "Montserrat";
+  src: url("assets/fonts/Montserrat-Regular.ttf") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat-Medium";
+  src: url("assets/fonts/Montserrat-Medium.ttf") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url("assets/fonts/Montserrat-Bold.ttf") format("woff2");
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  font-family: Montserrat, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  background-color: #000000;
+  color: #ffffff;
+  --toastify-color-light: #111;
+  --toastify-color-dark: #111;
+  --toastify-text-color-light: #fff;
+  --toastify-text-color-dark: #fff;
+  --toastify-font-family: Montserrat, sans-serif;
+  --toastify-color-progress-error: linear-gradient(
+    to right,
+    #3ac882,
+    #3ac882,
+    #3ac882
+  );
+  --toastify-icon-color-error: #fff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+/* Custom Scrollbar Styles */
+.scrollbar-custom ::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollbar-custom ::-webkit-scrollbar-track {
+  background: #d9d9d9;
+}
+
+.scrollbar-custom ::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.scrollbar-custom ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/* End Custom Scrollbar Styles */
+
+.background-body {
+  background-image: url( assets/images/background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+}
+
+.line-clamp1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.border-bottom > div:not(:last-child) {
+  border-bottom: 1px dashed #cccccc;
+}
+.mask-blocked {
+  pointer-events: none;
+}
+.mask-blocked::before {
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 12px;
+  content: "";
+  background: rgba(245, 245, 245, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.green-line::before {
+  content: "";
+  border-radius: 2px 2px 0px 0px;
+  background: var(
+    --Gradient-green,
+    linear-gradient(90deg, #3ac882 0%, #97e98a 100%)
+  );
+  height: 4px;
+  z-index: 2;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.mask-overlay-black::before {
+  content: "";
+  z-index: 2;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(0deg, #333 0%, rgba(51, 51, 51, 0) 100%);
+  height: 40px;
+}
+
+.bank img {
+  width: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 768px) {
+  .background-body {
+    background-image: url( assets/images/background.png);
+  }
 }

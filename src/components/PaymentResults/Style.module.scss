@@ -1,0 +1,180 @@
+.section {
+  @apply pb-[2.75rem] overflow-hidden block;
+}
+.container {
+  @apply w-[100%];
+}
+.badges {
+  @apply bg-[#fef9e8FF] pt-[0.75rem] pb-[0.75rem];
+}
+.badgesContainer {
+  @apply max-w-[74.8125rem]  ml-auto mr-auto pr-[1rem] pl-[1rem];
+}
+.containerContent {
+  @apply flex justify-center items-center align-middle;
+}
+.containerGroup {
+  @apply mr-3;
+}
+.text {
+  @apply text-[12px] w-[100%]  md:pl-1;
+}
+.message {
+  @apply font-medium text-[12px];
+}
+.unline {
+  @apply underline text-[12px]  hover:text-primary;
+}
+.button {
+  @apply md:flex justify-center font-medium border-[#9b9b9bFF] border-[0.0625rem] border-solid bg-transparent text-[0.875rem] p-[4px];
+}
+.blockSuccessFail {
+  @apply flex flex-col text-black px-4 mr-auto max-w-[600px] ml-auto text-sm lg:text-[24px] leading-normal;
+  .img {
+    @apply h-24 flex justify-center items-center;
+  }
+}
+.blockBody {
+  @apply w-[100%];
+}
+.blockText {
+  @apply w-full;
+}
+.inner {
+  @apply flex justify-center items-center;
+}
+
+.img {
+  @apply w-auto;
+}
+.blockTittle {
+  @apply text-center text-2xl lg:text-[36px] font-montserratMedium m-0;
+}
+.left {
+  @apply w-5/12 text-[#646464];
+}
+.right {
+  @apply w-7/12 text-black;
+}
+.middle {
+  @apply w-6/12;
+}
+.header {
+  @apply my-4;
+}
+.listGroup {
+  @apply flex flex-col mb-3 border-b-[0.0625rem] lg:border-solid border-dashed border-[#ccccccFF];
+}
+.item {
+  @apply py-3 px-0 items-center pt-[1.25rem] pb-[1.25rem] space-y-4;
+}
+
+.note {
+  @apply text-center pl-0 mb-3;
+}
+.textContent {
+  @apply text-right text-base font-medium break-all;
+}
+.infoGroup {
+  @apply mb-3 p-0;
+}
+.textNomal {
+  @apply text-base pl-1;
+}
+/* //form Failed */
+.maskFailed {
+  @apply mb-8 md:mb-[4rem];
+}
+.headerFailed {
+  @apply mb-4 md:mb-8;
+}
+.listGroupFailed {
+  @apply flex flex-col;
+}
+.itemFailed {
+  @apply py-3 px-0 items-center space-y-2.5 border-0 border-b-[0.0625rem] border-dashed border-[#ccccccFF];
+}
+
+.noteFailed {
+  @apply text-center pl-0 my-3 md:my-4 text-base;
+}
+.infoGroupFailed {
+  @apply flex items-center;
+}
+
+/* //formProcess */
+.blockProcess {
+  @apply flex flex-col max-w-[600px] mr-auto ml-auto text-black leading-normal;
+}
+.maskPro {
+  @apply mr-auto ml-auto;
+}
+.process {
+  @apply mb-4;
+}
+
+.groupListPro {
+  @apply flex flex-col;
+}
+
+.infoGroupPro {
+  @apply flex mb-3 text-base;
+}
+
+.textContentPro {
+  @apply text-center mb-3;
+}
+
+.textHighlight {
+  @apply text-primary px-1;
+}
+/* //FormSucces */
+.groupListSuccess {
+  @apply flex py-2 lg:py-3;
+}
+.button3 {
+  @apply flex pt-[10px];
+}
+.textEmail {
+  @apply text-base m-0;
+}
+.inputEmail {
+  @apply mb-[0.5rem] border-b-[1px] border-solid border-b-[#ccccccFF];
+}
+.textContentSuccess {
+  @apply text-right break-all;
+}
+.buttonSuccess {
+  @apply flex justify-center items-center rounded bg-primary text-base md:text-lg select-none text-white w-[100%] h-12 transition enabled:hover:opacity-90;
+  &:hover {
+    color: #fff;
+  }
+}
+.buttonOutline {
+  @apply h-[48px] text-base transition enabled:hover:opacity-90 md:text-lg w-full border rounded-lg flex justify-center items-center;
+}
+.headerSu {
+  @apply m-0;
+}
+
+.textTv {
+  @apply text-center text-base mt-[10px];
+}
+.textPhone {
+  @apply text-center text-[#646464FF] mt-[10px] text-base;
+}
+.textGray {
+  @apply text text-center text-[#646464];
+}
+.buttonGroup {
+  @apply flex items-stretch mb-3 flex-wrap space-x-3 mx-auto lg:w-1/2;
+  button {
+    @apply flex-[1_1_0px];
+  }
+}
+.buttonGroupFail {
+  @apply flex items-stretch mb-3 flex-wrap space-x-3 mx-auto;
+  button {
+    @apply flex-[1_1_0px];
+  }
+}

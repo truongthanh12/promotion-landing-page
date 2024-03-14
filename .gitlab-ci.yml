@@ -1,0 +1,161 @@
+include:
+  - project: 'vieon-templates/ci-template'
+    ref: latest
+    file: 'single-image.gitlab-ci.yml'
+  - local: '.gitlab-ci-template.yml'
+
+stages:
+  - test
+  - sonarqube-check
+  - build
+  - deploy
+  - clear-cache-cdn
+  - release
+  - promote
+
+variables:
+  DOCKER_IMAGE_NAME: uudai
+
+#Unit Test
+test:unit-test:
+  stage: test
+  image: ${DOCKER_HUB}/base-nodejs-18-alpine-s3cmd:1d49f4c5
+  cache:
+    paths:
+      - node_modules/
+  before_script:
+    - apk update && apk add git
+  script:
+    - node -v
+    - echo "Implement later"
+    # - npm install
+    # - npm run test
+  artifacts:
+    paths:
+      - coverage/lcov.info
+  only:
+    refs:
+      - merge_requests
+      - master
+
+.sonarqube-check:
+  stage: sonarqube-check
+  image:
+    name: ${DOCKER_HUB}/sonar-scanner-cli:latest
+    entrypoint: ['']
+  variables:
+    SONAR_USER_HOME: '${CI_PROJECT_DIR}/.sonar' # Defines the location of the analysis task cache
+    GIT_DEPTH: '0' # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: '${CI_JOB_NAME}'
+    paths:
+      - .sonar/cache
+  allow_failure: true
+  dependencies:
+    - test:unit-test
+
+sonarqube-check:development:
+  extends:
+    - .sonarqube-check
+  script:
+    - sonar-scanner -Dsonar.projectVersion=development
+  only:
+    - master
+
+sonarqube-check:release:
+  extends:
+    - .sonarqube-check
+  before_script:
+    - export PROJECT_VERSION=${CI_COMMIT_REF_NAME##*/}-${CI_COMMIT_SHORT_SHA}
+  script:
+    - sonar-scanner -Dsonar.projectVersion=${PROJECT_VERSION}
+  only:
+    refs:
+      - /^release\/*/i
+
+deploy:dev:
+  extends:
+    - .deploy-k8s
+    - .deploy-development
+  stage: deploy
+  before_script:
+    - ENVIRONMENT=develop
+    - PROJECT_NAME=${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}
+    - IMAGE_NAME=${DOCKER_HUB}/${DOCKER_IMAGE_NAME}-${CI_ENVIRONMENT_NAME}
+    - IMAGE_TAG=${CI_COMMIT_REF_NAME##*/}-${CI_COMMIT_SHORT_SHA}
+  only:
+    refs:
+      - master
+      - develop
+
+deploy:testing:
+  extends:
+    - .deploy-k8s
+    - .deploy-testing
+  stage: deploy
+  before_script:
+    - ENVIRONMENT=${CI_ENVIRONMENT_NAME}
+    - PROJECT_NAME=${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}
+    - IMAGE_NAME=${DOCKER_HUB}/${DOCKER_IMAGE_NAME}-${CI_ENVIRONMENT_NAME}
+    - IMAGE_TAG=${CI_COMMIT_REF_NAME##*/}-${CI_COMMIT_SHORT_SHA}
+  when: manual
+  only:
+    refs:
+      - /^release\/*/i
+
+deploy:staging:
+  extends:
+    - .deploy-k8s
+    - .deploy-testing
+  stage: deploy
+  before_script:
+    - ENVIRONMENT=${CI_ENVIRONMENT_NAME}
+    - PROJECT_NAME=${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}
+    - IMAGE_NAME=${DOCKER_HUB}/${DOCKER_IMAGE_NAME}-staging
+    - IMAGE_TAG=${CI_COMMIT_REF_NAME##*/}-${CI_COMMIT_SHORT_SHA}
+  when: manual
+
+deploy:production:
+  extends:
+    - .deploy-k8s
+    - .deploy-production
+  stage: deploy
+  before_script:
+    - ENVIRONMENT=${CI_ENVIRONMENT_NAME}
+    - PROJECT_NAME=${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}
+    - IMAGE_NAME=${DOCKER_HUB}/${DOCKER_IMAGE_NAME}-${CI_ENVIRONMENT_NAME}
+    - IMAGE_TAG=${CI_COMMIT_REF_NAME##*/}-${CI_COMMIT_SHORT_SHA}
+  after_script:
+    - !reference [.send-mail, script]
+
+clear-cache-cdn-dev:
+  extends:
+    - .clear-cache-cdn
+  stage: clear-cache-cdn
+  before_script:
+    - CI_ENVIRONMENT_NAME=dev
+  when: manual
+
+clear-cache-cdn-testing:
+  extends:
+    - .clear-cache-cdn
+  stage: clear-cache-cdn
+  before_script:
+    - CI_ENVIRONMENT_NAME=testing
+  when: manual
+
+clear-cache-cdn-staging:
+  extends:
+    - .clear-cache-cdn
+  stage: clear-cache-cdn
+  before_script:
+    - CI_ENVIRONMENT_NAME=staging
+  when: manual
+
+clear-cache-cdn-production:
+  extends:
+    - .clear-cache-cdn
+  stage: clear-cache-cdn
+  before_script:
+    - CI_ENVIRONMENT_NAME=production
+  when: manual
