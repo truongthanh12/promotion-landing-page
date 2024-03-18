@@ -1,4 +1,4 @@
-import { PAYMENT_METHOD, PAYMENT_METHOD_BE } from "utils/constants";
+import { PAYMENT_METHOD, PAYMENT_METHOD_BE } from "../../utils/constants";
 
 export const parseMethodId = (methodId: string) => {
   switch (methodId) {

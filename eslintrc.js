@@ -43,6 +43,7 @@ module.exports = {
       },
     ],
     "@typescript-eslint/no-explicit-any": "off",
-    "eslint-disable-next-line react-hooks/exhaustive-deps": "off",
+    // Disable the rule eslint-disable-next-line
+    "react-hooks/exhaustive-deps": "off",
   },
 };

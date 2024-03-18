@@ -1,4 +1,6 @@
 import React from "react";
+import "./index.css"
+import "react-app-polyfill/stable"; // react polyfill
 import App from "./App";
 import { Providers } from "./state/provider";
 import CampaignStatus from "./components/StatusCampaign";

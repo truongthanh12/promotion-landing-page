@@ -1,14 +1,23 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const sourcePath = path.join(__dirname, "./src");
 
 module.exports = {
   entry: "./src/index.tsx",
+  // context: sourcePath,
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
   },
-
-  devtool: "inline-source-map",
-
+  target: "web",
+  resolve: {
+    extensions: [".js", ".ts", ".tsx"],
+    mainFields: ["module", "browser", "main"],
+    alias: {
+      app: path.resolve(__dirname, "src/"),
+    },
+  },
   module: {
     rules: [
       {
@@ -19,29 +28,27 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: ["style-loader", "css-loader", "sass-loader"],
-      },
-      {
-        test: /\.css$/, // Matches files ending with .css
         use: [
-          "style-loader", // Injects CSS directly into the DOM
-          "css-loader", // Parses CSS into JavaScript modules
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "sass-loader",
         ],
       },
       {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/, // to import images and fonts
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+        ],
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
         loader: "url-loader",
         options: { limit: false },
       },
     ],
   },
-  resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
-  },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, "dist"),
-    },
-    port: 3000,
-  },
+  plugins: [
+    new MiniCssExtractPlugin(),
+  ],
 };

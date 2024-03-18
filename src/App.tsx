@@ -12,7 +12,7 @@ import PaymentResults from "./pages/results";
 import { pathname, trimmedPathname } from "./utils/helper";
 import { PAGE } from "./utils/constants";
 import Home from "./pages/home";
-import { Tracking } from "tracking/TrackingSegment";
+import { Tracking } from "./tracking/TrackingSegment";
 
 /**
  * Renders the main application component.
@@ -21,7 +21,7 @@ import { Tracking } from "tracking/TrackingSegment";
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useAppDispatch();
-  
+
   useEffect(() => {
     document.documentElement.classList.add("overflow-hidden");
     document.body.classList.add("overflow-hidden");
@@ -39,9 +39,9 @@ function App() {
     dispatch(getCampaignConfig({ key: trimmedPathname }));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   Tracking.init()
-  // }, [])
+  useEffect(() => {
+    Tracking?.init();
+  }, []);
 
   return (
     <BrowserRouter>

@@ -1,0 +1,12 @@
+/phim-bo/trung-quoc/dai-minh-phong-hoa-dai-minh-hoang-phi
+/phim-bo/phim-thai-lan/chiec-la-cuon-bay
+/phim-bo/trung-quoc/kiem-vuong-trieu-vietsub
+/
+/phim-truyen
+/danh-muc/phim-bo-tong-hop
+/danh-muc/phim-trung-quoc
+/danh-muc/phim-han-quoc
+/danh-muc/phim-quoc-gia-khac
+/tv-show
+/khac
+/danh-muc/su-kien
